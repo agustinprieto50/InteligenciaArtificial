@@ -49,13 +49,24 @@ class Utils():
         except None:
             return False
 
-    def objectiveToInitial(self, objective):
+    # Objective es el nodo final
+    def backToRoot(self, objective):
         nodes = [objective]
         for i in nodes:
             parent = self.getParent(i)
             if parent:
                 nodes.append(parent)
         return nodes
+
+    def backToObjFromRoot(self, pathToObj, pathToRoot):
+        pathToObjFromRoot = []
+        for i in reversed(pathToObj):
+            pathToObjFromRoot.append(i)
+        for j in pathToRoot:
+            pathToObjFromRoot.append(j)
+        return pathToObjFromRoot
+
+
 
     def printSolutions(self, solutions: list):
         for node in reversed(solutions):

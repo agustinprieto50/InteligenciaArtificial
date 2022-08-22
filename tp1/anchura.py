@@ -23,28 +23,26 @@ class Tree():
 
     def createLevel(self):
         for level in self.levels:
-                auxLevel = []
-                for sublevel in level:
-                    for node in sublevel:
-                        auxSubLeveL = []
-                        board = node.board
-                        if board == OBJECTIVE:
-                            print("The program found the solution!", board)
-                            return node
-                        position = utils.getPosition(board)
-                        possibleMoves = utils.getPossibleMoves(position)
-                        for i in possibleMoves:
-                            copyBoard = deepcopy(board)
+            auxLevel = []
+            for sublevel in level:
+                for node in sublevel:
+                    auxSubLeveL = []
+                    board = node.board
+                    if board == OBJECTIVE:
+                        print("\nThe program found the solution!", board, '\n')
+                        return node
+                    position = utils.getPosition(board)
+                    possibleMoves = utils.getPossibleMoves(position)
+                    for i in possibleMoves:
+                        copyBoard = deepcopy(board)
 
-                            newBoard = utils.modifyMatrix(position, i, copyBoard)
+                        newBoard = utils.modifyMatrix(position, i, copyBoard)
 
-                            child = Node(newBoard)
-                            node.addChild(child)
-                            auxSubLeveL.append(child)
-                        auxLevel.append(auxSubLeveL)
-
-                
-                self.levels.append(auxLevel)
+                        child = Node(newBoard)
+                        node.addChild(child)
+                        auxSubLeveL.append(child)
+                    auxLevel.append(auxSubLeveL)
+            self.levels.append(auxLevel)
 
     def createTree(self):
         while True:
@@ -56,6 +54,6 @@ class Tree():
 root = Node([[1, 0, 3], [4, 2, 6], [7, 5, 8]])
 tree = Tree(root)
 solutionNode = tree.createTree()
-solutionArray = utils.objectiveToInitial(solutionNode)
+solutionArray = utils.backToRoot(solutionNode)
 utils.printSolutions(solutionArray)
 

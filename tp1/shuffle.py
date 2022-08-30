@@ -19,7 +19,7 @@ class Shuffle():
         
     def getShuffledBoard(self, initial):
             count = 1
-            while count < 20:
+            while count < 50:
                 self.shuffle(initial)
                 count += 1
             return initial

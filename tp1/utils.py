@@ -1,7 +1,6 @@
 import random
 
 
-
 class Utils():
 
     def __init__(self):
@@ -50,28 +49,27 @@ class Utils():
             return False
 
     # Objective es el nodo final
-    def backToRoot(self, objective):
-        nodes = [objective]
+    def backToRoot(self, startingPoint):
+        nodes = [startingPoint]
         for i in nodes:
             parent = self.getParent(i)
             if parent:
                 nodes.append(parent)
         return nodes
 
-    def backToObjFromRoot(self, pathToObj, pathToRoot):
-        pathToObjFromRoot = []
+    def backToObjFromInitial(self, pathToObj, pathToInitial):
+        pathToObjFromInitial = []
         for i in reversed(pathToObj):
-            pathToObjFromRoot.append(i)
-        for j in pathToRoot:
-            pathToObjFromRoot.append(j)
-        return pathToObjFromRoot
-
-
+            pathToObjFromInitial.append(i)
+        for j in pathToInitial:
+            pathToObjFromInitial.append(j)
+        return pathToObjFromInitial
 
     def printSolutions(self, solutions: list):
+        count = 0
         for node in reversed(solutions):
+            count += 1
+            print(f"Nivel: {count}")
             for row in node.board:
                 print(row)
             print('\n')
-
-

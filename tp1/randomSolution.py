@@ -11,4 +11,4 @@ def randomSolution(board):
         count += 1
 
         if new_board == OBJECTIVE:
-            return f"\nThe program needed {count} moves to solve the problem. Board: {new_board}\n"
+            return f"\nEl programa necesitó {count} movimientos para resolver el puzzle. Tablero: {new_board}\n"

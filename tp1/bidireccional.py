@@ -3,13 +3,14 @@ import time
 from utils import Utils
 from node import Node
 from tree import Tree
+from shuffle import Shuffle
 
 inicio = time.time()
 
 utils = Utils()
+shuffle = Shuffle()
 
 class TreeBidir(Tree):
-    
     def createLevel(self):
         copyOfLevel = self.level
         self.level = []
@@ -36,10 +37,9 @@ def createTree(treeInitial: TreeBidir, treeObjective: TreeBidir):
                     pathFromjToRoot = utils.backToRoot(j)
                     return utils.backToObjFromInitial(pathFromjToRoot, pathFromiToRoot)
 
-# Objective es el arbol con el el board objetivo
-# Root es el arbol con el board inicial desordenado
 
-initial = Node([[1, 2, 3],[4, 8, 5],[7, 6, 0]])
+shuffledBoard = shuffle.getShuffledBoard([[1,2,3],[4,5,6],[7,8,0]])
+initial = Node(shuffledBoard)
 objective = Node([[1,2,3],[4,5,6],[7,8,0]])
 treeInitial = TreeBidir(initial)
 treeObjective = TreeBidir(objective)
